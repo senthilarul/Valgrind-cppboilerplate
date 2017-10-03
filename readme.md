@@ -1,6 +1,6 @@
 # Valgrind Exercise - C++ Boilerplate
-[![Build Status](https://travis-ci.org/dpiet/cpp-boilerplate.svg?branch=master)](https://travis-ci.org/dpiet/cpp-boilerplate)
-[![Coverage Status](https://coveralls.io/repos/github/dpiet/cpp-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/dpiet/cpp-boilerplate?branch=master)
+[![Build Status](https://travis-ci.org/senthilarul/Valgrind-cppboilerplate.svg?branch=valgrind_exercise)](https://travis-ci.org/senthilarul/Valgrind-cppboilerplate)
+[![Coverage Status](https://coveralls.io/repos/github/senthilarul/Valgrind-cppboilerplate/badge.svg?branch=valgrind_exercise)](https://coveralls.io/github/senthilarul/Valgrind-cppboilerplate?branch=valgrind_exercise)
 ---
 
 ## Overview
@@ -29,4 +29,39 @@ make
 Run tests: ./test/cpp-test
 Run program: ./app/shell-app
 ```
+## Run Valgrind test
+To install valgrind
+```
+sudo apt install valgrind
+```
+To install Kcachegrind
+```
+sudo apt install kcachegrind
+```
+
+For identifying errors, memory leaks using valgrind
+```
+cd <path to repository>
+valgrind --tool=memcheck --leak-check=full ./build/app/shell-app 
+
+```
+Function and Memory Profiling
+```
+valgrind --tool=callgrind ./build/app/shell-app
+valgrind --tool=massif ./build/app/shell-app
+```
+
+The above two commands produce a callgrind.out and massif.out files respectively.
+
+To visualize callgrind.out file we use Kcachegrind.
+```
+kcachegrind
+```
+In the application that opens up, click on open menu. Select the callgrind.out file from your repository.
+
+To visualize massif.out file in the terminal.
+```
+ms_print massif.out.<process id>
+```
+
 
